@@ -47,16 +47,36 @@ function getCircle( x, y, r){
     return circle
 };
 brightness = 0.15
+mouse = {x: 0, y: 0, z: true}
+speed = 0.5
 
-window.addEventListener('mousemove', (mouse)=>{
-    $('container').style.background = `
-        radial-gradient(
-        500px circle at ${mouse.x+window.scrollX}px ${mouse.y+window.scrollY}px,
-        rgba(255, 255, 255, ${brightness}),
-        transparent
-    )
-    `
+window.addEventListener('mousemove', (event)=>{
+    mouse.z = true
+    mouse.x = event.x
+    mouse.y = event.y
 })
 window.addEventListener('scroll', ()=>{
-    $('container').style.background = 'transparent'
+    mouse.z = false
 })
+window.addEventListener('mouseout', ()=>{
+    mouse.z = false
+})
+
+function animate(){
+    requestAnimationFrame(animate)    
+    $('container').style.background = `
+    radial-gradient(
+    500px circle at ${mouse.x+window.scrollX}px ${mouse.y+window.scrollY}px,
+    rgba(255, 255, 255, ${brightness}),
+    transparent
+    )
+    `
+    if (!mouse.z){
+        if(mouse.x > window.innerWidth/2) mouse.x -= speed
+        else mouse.x += speed
+        if(mouse.y > window.innerHeight/2) mouse.y -= speed
+        else mouse.y += speed
+    }
+}
+
+animate()
