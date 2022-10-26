@@ -1,39 +1,65 @@
 body{
-    background: linear-gradient(#080e0b 80vh, #281510);
+    background-color: #080809;
     color: #EEE;
     font-family: roboto;
     margin: 0px;
     scroll-behavior: smooth;
     scrollbar-width: thin;
+    display: grid;
 }
-#container{
-    background: transparent;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px 40px;
-    padding: 20px;
-    justify-content: space-evenly;
-}
-#background{
-    background: radial-gradient(#0003 3px, transparent 3px);
+#checker-background, #interactive-background, #gradient-background{
     position: fixed;
-    background-size: 40px 40px;
     width: 100%;
     height: 100%;
     top: 0px;
     left: 0px;
+    z-index: -5;
 }
-.item{
+#checker-background{
+    background: radial-gradient(#0003 3px, transparent 3px);
+    background-size: 40px 40px;
+}
+#gradient-background{
+    background: radial-gradient(
+        60vw circle at 0px 0px,
+        #252525 , #080809
+    );
+}
+#title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    font-size: 80px;
+    letter-spacing: 8px;
+    font-variant: small-caps;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    border-bottom: white solid 1px;
+    background-color: #030303dd;
+    box-shadow: #fff2 0px 0px 30px;
+}
+#cards{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 20px;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+.card{
     background-color: #888;
-    width: 360px;
-    height: 230px;
+    min-width: 300px;
+    max-width: 370px;
+    height: 220px;
+    flex-grow: 1;
     position: relative;
-    border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-    box-shadow: #ffffff04 0px 0px 15px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    box-shadow: #ffffff05 0px 0px 15px;
     transform: scale(1);
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
@@ -46,15 +72,15 @@ body{
     -o-transition: 150ms;
     cursor: pointer;
 }
-.item:hover{
-    /*transform: scale(1.05);
-    -webkit-transform: scale(1.05);
-    -moz-transform: scale(1.05);
-    -ms-transform: scale(1.05);
-    -o-transform: scale(1.05);*/
+.card:hover{
+    transform: scale(1.01);
+    -webkit-transform: scale(1.01);
+    -moz-transform: scale(1.01);
+    -ms-transform: scale(1.01);
+    -o-transform: scale(1.01);
     box-shadow: #fff3 0px 0px 12px;
 }
-.item::before{
+.card::before{
     content: "";
     width: 100%;
     height: 100%;
@@ -62,7 +88,7 @@ body{
     left: 0px;
     position: absolute;;
 }
-.item img{
+.card img{
     top: 0px;
     left: 0px;
     position: absolute;
@@ -74,8 +100,8 @@ body{
     -moz-border-radius: inherit;
     -ms-border-radius: inherit;
     -o-border-radius: inherit;
-    filter: grayscale(.6);
-    -webkit-filter: grayscale(.6);
+    filter: grayscale(.8) blur(0.5px);
+    -webkit-filter: grayscale(.8) blur(0.5px);
     transition: filter 150ms;
     -webkit-transition: filter 150ms;
     -moz-transition: filter 150ms;
@@ -83,11 +109,11 @@ body{
     -o-transition: filter 150ms;
     user-select: none;
 }
-.item:hover img{
-    filter: grayscale(0);
-    -webkit-filter: grayscale(0);
+.card:hover img{
+    filter: none;
+    -webkit-filter: none;
 }
-.item-content{
+.card-content{
     background: linear-gradient(#0006 60%, #000);
     width: calc(100% - 2px);
     height: calc(100% - 2px);
@@ -106,12 +132,12 @@ body{
     flex-direction: column;
     justify-content: end;
 }
-.item-name{
+.card-name{
     color: #edc;
     font-size: 35px;
     margin-bottom: -5px;
 }
-.item-discription{
+.card-discription{
     color: #baa;
     font-size: 17px;
 }

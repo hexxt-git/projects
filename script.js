@@ -23,6 +23,9 @@ function $(id){
 function randomColor(){
     return `hsl( ${rdm(360)}, ${random( 20, 70, true)}%, 50%)`
 };
+function lerp(a, b, k){
+    return a + (b - a) * k
+}
 function getLine( x1, y1, x2, y2){
     let line = []
     if( x1 - x2 == 0 && y1 - y2 == 0) return line
@@ -46,36 +49,39 @@ function getCircle( x, y, r){
     }
     return circle
 };
-brightness = 0.15
-mouse = {x: 0, y: 0, z: true}
+brightness = 0.1
+mouse = {x: window.innerWidth/2, y: window.innerHeight/2}
+active = false
+x = window.innerWidth/2
+y = window.innerHeight/2
 speed = 0.5
 
 window.addEventListener('mousemove', (event)=>{
-    mouse.z = true
+    active = true
     mouse.x = event.x
     mouse.y = event.y
 })
-window.addEventListener('scroll', ()=>{
-    mouse.z = false
-})
 window.addEventListener('mouseout', ()=>{
-    mouse.z = false
+    active = false
 })
 
 function animate(){
     requestAnimationFrame(animate)    
-    $('container').style.background = `
+    $('interactive-background').style.background = `
     radial-gradient(
-    500px circle at ${mouse.x+window.scrollX}px ${mouse.y+window.scrollY}px,
+    500px circle at ${x}px ${y}px,
     rgba(255, 255, 255, ${brightness}),
     transparent
     )
     `
-    if (!mouse.z){
-        if(mouse.x > window.innerWidth/2) mouse.x -= speed
-        else mouse.x += speed
-        if(mouse.y > window.innerHeight/2) mouse.y -= speed
-        else mouse.y += speed
+    if (active){
+        x = lerp(x, mouse.x, .15)
+        y = lerp(y, mouse.y, .15)
+    } else {
+        if (x > window.innerWidth/3) x -= 1
+        else x += 1
+        if (y > window.innerHeight/2) y -= 1
+        else y += 1
     }
 }
 
