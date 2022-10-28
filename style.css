@@ -42,11 +42,11 @@ body{
     text-decoration: underline;
     text-decoration-thickness: 3px;
     text-underline-offset: 5px;
-    transition: 100ms ease;
-    -webkit-transition: 100ms ease;
-    -moz-transition: 100ms ease;
-    -ms-transition: 100ms ease;
-    -o-transition: 100ms ease;
+    transition: 150ms ease;
+    -webkit-transition: 150ms ease;
+    -moz-transition: 150ms ease;
+    -ms-transition: 150ms ease;
+    -o-transition: 150ms ease;
     user-select: none;
     cursor: pointer;
     text-shadow: #fff2 0px 0px 10px;
@@ -57,15 +57,15 @@ body{
 #cards{
     display: flex;
     flex-wrap: wrap;
-    gap: 25px;
+    gap: 20px;
     padding: 20px;
     justify-content: flex-start;
     margin-top: 20px;
 }
 .card{
     outline: #999 solid 1px;
-    min-width: 300px;
-    max-width: 370px;
+    min-width: 330px;
+    max-width: 420px;
     height: 250px;
     flex-grow: 1;
     position: relative;
@@ -80,12 +80,13 @@ body{
     -moz-transform: scale(1);
     -ms-transform: scale(1);
     -o-transform: scale(1);
-    transition: 150ms;
-    -webkit-transition: 150ms;
-    -moz-transition: 150ms;
-    -ms-transition: 150ms;
-    -o-transition: 150ms;
+    transition: 200ms ease;
+    -webkit-transition: 200ms ease;
+    -moz-transition: 200ms ease;
+    -ms-transition: 200ms ease;
+    -o-transition: 200ms ease;
     cursor: pointer;
+    overflow: hidden;
 }
 .card:hover{
     transform: scale(1.01);
@@ -95,10 +96,12 @@ body{
     -o-transform: scale(1.01);
     box-shadow: #fff3 0px 0px 12px;
 }
-.card img{    
+.card img{
+    position: absolute;
+    top: 0px;
+    left: 0px;
     width: 100%;
-    max-width: 100%;
-    max-height: 100%;
+    min-height: 100%;
     border-radius: inherit;
     -webkit-border-radius: inherit;
     -moz-border-radius: inherit;
@@ -156,7 +159,7 @@ body{
     .card{
         min-width: 100%;
         max-width: 100%;
-        height: calc(50vh - 50px);
+        height: max(calc(50vh - 50px), 300px);
         border-radius: 50px;
         -webkit-border-radius: 50px;
         -moz-border-radius: 50px;
