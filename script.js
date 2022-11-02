@@ -65,9 +65,14 @@ window.addEventListener('mousemove', (event)=>{
 window.addEventListener('mouseout', ()=>{
     active = false
 })
+window.addEventListener('click', ()=>{
+    brightness = 0.12
+})
 
 function desktop(){
-    requestAnimationFrame(desktop)    
+    setTimeout(()=>{
+        requestAnimationFrame(desktop)
+    }, 1000/50)
     $('interactive-background').style.background = `
     radial-gradient(
     500px circle at ${x}px ${y}px,
@@ -75,14 +80,15 @@ function desktop(){
     transparent
     )`
     if (active){
-        x = lerp(x, mouse.x, .15)
-        y = lerp(y, mouse.y, .15)
+        x = lerp(x, mouse.x, .2)
+        y = lerp(y, mouse.y, .2)
     } else {
         if (x > 2*window.innerWidth/3) x -= .4
         else x += .4
         if (y > window.innerHeight/2) y -= .4
         else y += .4
     }
+    brightness = lerp(brightness, default_brightness, 0.1)
 }
 function mobile() {
     requestAnimationFrame(mobile)
