@@ -1,5 +1,5 @@
 body::-webkit-scrollbar{
-    background-color: #000;
+    background-color: #050505;
 }
 ::-webkit-scrollbar-thumb{
     background-color: #ccc;
@@ -8,7 +8,11 @@ body::-webkit-scrollbar{
     -moz-border-radius: 50px;
     -ms-border-radius: 50px;
     -o-border-radius: 50px;
-    box-shadow: white 0px 0px 10px;
+    box-shadow: #fff5 0px 0px 15px;
+}
+::-webkit-scrollbar-thumb:hover{
+    background-color: #eee;
+    box-shadow: #fff9 0px 0px 15px;
 }
 body{
     background-color: #080809;
